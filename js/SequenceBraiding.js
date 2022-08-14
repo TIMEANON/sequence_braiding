@@ -29,7 +29,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		this.cleanup(this.opt.minEventPerColThreshold)
 
 		// drawing variables
-		if (this.opt.horizontal_spacing == undefined) this.horizontal_spacing = (this.opt.width == '100%' ? svgwidth*0.90/(this.path.length-2) : (this.opt.width*0.90)/(this.path.length-2))
+		if (this.opt.horizontal_spacing == undefined) this.horizontal_spacing = (this.opt.width == '100%' ? svgwidth*0.90/(this.path.length-3) : (this.opt.width*0.90)/(this.path.length-3))
 		else this.horizontal_spacing = this.opt.horizontal_spacing
 		if (this.opt.vertical_spacing == undefined) this.vertical_spacing = Math.min(Math.max(svgheight/(this.data.length*2), 1), 12);
 		else this.vertical_spacing = opt.vertical_spacing
@@ -57,7 +57,7 @@ window.SequenceBraiding = class SequenceBraiding {
 		    guidelines: true,
 		    animate: false,
 				colorbysequence: false,
-				forceLevelName: false,
+				forceLevelName: true,
 				verbose_stats: false,
 				verbose_ord: true,
 				formulate_ilp: false,
@@ -66,25 +66,39 @@ window.SequenceBraiding = class SequenceBraiding {
 				// graph building variables
 		    minEventPerColThreshold: 1,
 		    numSequences: 100,
+		    //numSequences: 100, //peak
 				max_iterations: 20,
 
 				// graphical representation
-				height: 400,
-		    width: '100%',
-				svg_width: '100%',
-
-				link_opacity: 1,
+				//height: 983,
+		    //width: 800, //peak
+				//svg_width: 900, //peak
+				width: 2200,
+				svg_width: 2300,
+				vertical_spacing: 3,
+				link_opacity: 5,
+				//node_width_factor: 0.6, //Peak
+				//link_stroke_width: 3, //Peak
 				node_width_factor: 0.2,
-				link_stroke_width: 4,
+				link_stroke_width: 10,
 				padding: {top: 40, left: 40},
-				colorscheme: ["#E32551", "#F07C19", "#029DAF", "#FFC219", "#cd5b43"],
-				fontSize: '0.9em',
+				colorscheme:["#8DD3C7","#FFFDB3","#BEBADA","#80B1D3","#FB8072","#FDB462","#FCCDE5","#B3DE68","#CCEBC5","#BC80BD","#D9D9D9","#FFED6F"],
+				//colorscheme:["#8DD3C7","#FFFDB3","#BEBADA","#FB8072","#80B1D3","#FDB462","#B3DE68","#FCCDE5","#D9D9D9","#BC80BD","#CCEBC5","#FFED6F"],
+				//colorscheme: ["#800000","#808000","#469990","#e6194B","#ffe119","#f58231","#9A6324"],
+				//colorscheme: ["#CDCDCD","#42d4f4","#CDCDCD","#469990","#e6194B","#CDCDCD","#ffe119","#3cb44b","#CDCDCD","#f58231","#CDCDCD","#CDCDCD"],
+				//colorscheme: ["#CDCDCD","#42d4f4","#808000","#f032e6","#469990","#CDCDCD","#CDCDCD","#e6194B","#CDCDCD","#ffe119","#3cb44b","#CDCDCD","#f58231","#CDCDCD","#CDCDCD"],
+				//fontSize: '1.25em',
+				fontSize:'1em',
 				catmullromvalue: 1,
 				path_text_y: 10,
-
+				
+				  
 				// force path and/or levels
 				path: undefined,
-		    levels: undefined,
+				//levels: ['Sleep', 'Housework', 'Meal preparation & cleanup', 'Care for child', 'Meal', 'Leisure','Travel'],
+				//levels: ['Sleep', 'Personal hygiene', 'Housework', 'Meal preparation & cleaning', 'Care for child', 'Care for adult', 'Meal', 'Paid Work', 'Education','Leisure','Travel','No record'],
+				levels: ['Sleep', 'Personal hygiene', 'Housework', 'Meal preparation & cleanup', 'Care for child', 'Care for adult', 'Meal', 'Paid Work', 'Education','Leisure','Travel','No record'],
+		    //levels: ['Sleep', 'Personal hygiene', 'Cleaning', 'Laundry', 'Meal preparation & cleanup', 'Household purchases', 'House maintenance', 'Care for child', 'Care for adult', 'Meal', 'Paid Work', 'Education','Leisure','Travel','No record'],
 				pairwise_align_levels: false, // use pairwise alignment to get sequence of levels
 
 				pairwise_alignment_vars: {
@@ -1163,7 +1177,7 @@ window.SequenceBraiding = class SequenceBraiding {
 				.attr('text-anchor', 'middle')
 				.attr('font-family', 'Arial')
 				.attr('class', 'path_top_text')
-				.attr('font-size', '0.8em')
+				.attr('font-size', '0.9em')
 				.attr('fill', 'black')
 				.text(this.path[e])
 		}
